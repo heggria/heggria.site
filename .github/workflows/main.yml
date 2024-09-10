@@ -10,39 +10,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 第一步，检查出仓库的代码
-    - name: Checkout code
-      uses: actions/checkout@v2
+      # 第一步，检查出仓库的代码
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    # 第二步，安装 SSH 客户端并测试
-    - name: Install and Test SSH
-      run: |
-        sudo apt-get update && sudo apt-get install -y openssh-client
-        ssh -V  # 测试 SSH 是否安装成功
+      # 第二步，安装 SSH 客户端并测试
+      - name: Install and Test SSH
+        run: |
+          sudo apt-get update && sudo apt-get install -y openssh-client
+          ssh -V  # 测试 SSH 是否安装成功
 
-    # 第三步，设置 SSH 密钥
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.TENCENT_CLOUD_SSH_KEY }}
+      # 第三步，设置 SSH 密钥
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.TENCENT_CLOUD_SSH_KEY }}
 
-    # 第四步，创建部署脚本
-    - name: Create deployment script
-      run: |
-        echo 'cd $PATH && git pull origin main && npm install && npm run build' > deploy.sh
+      # 第四步，创建部署脚本
+      - name: Create deployment script
+        run: |
+          echo 'cd $PATH && git pull origin main && npm install && npm run build' > deploy.sh
 
-    # 第五步，上传脚本到服务器
-    - name: Upload script to Tencent Cloud
-      env:
-        USER: ${{ secrets.TENCENT_CLOUD_USER }}
-        IP: ${{ secrets.TENCENT_CLOUD_IP }}
-      run: |
-        scp -o StrictHostKeyChecking=no deploy.sh $USER@$IP:/tmp/deploy.sh
+      # 第五步，上传脚本到服务器
+      - name: Upload script to Tencent Cloud
+        env:
+          USER: ${{ secrets.TENCENT_CLOUD_USER }}
+          IP: ${{ secrets.TENCENT_CLOUD_IP }}
+        run: |
+          scp -o StrictHostKeyChecking=no deploy.sh $USER@$IP:/tmp/deploy.sh
 
-    # 第六步，远程执行部署脚本
-    - name: Execute deployment script on Tencent Cloud
-      env:
-        USER: ${{ secrets.TENCENT_CLOUD_USER }}
-        IP: ${{ secrets.TENCENT_CLOUD_IP }}
-      run: |
-        ssh -o StrictHostKeyChecking=no $USER@$IP "bash /tmp/deploy.sh"
+      # 第六步，远程执行部署脚本
+      - name: Execute deployment script on Tencent Cloud
+        env:
+          USER: ${{ secrets.TENCENT_CLOUD_USER }}
+          IP: ${{ secrets.TENCENT_CLOUD_IP }}
+        run: |
+          ssh -o StrictHostKeyChecking=no $USER@$IP "bash /tmp/deploy.sh"
