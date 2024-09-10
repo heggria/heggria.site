@@ -16,7 +16,7 @@ jobs:
 
     # 第二步，安装 SSH 客户端
     - name: Install SSH
-      run: sudo apt-get install -y openssh-client
+      run: sudo apt-get update && sudo apt-get install -y openssh-client
 
     # 第三步，设置 SSH 密钥
     - name: Set up SSH
