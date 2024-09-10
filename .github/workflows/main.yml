@@ -29,10 +29,11 @@ jobs:
       env:
         USER: ${{ secrets.TENCENT_CLOUD_USER }}
         IP: ${{ secrets.TENCENT_CLOUD_IP }}
+        PATH: ${{ secrets.TENCENT_CLOUD_PATH }}
       run: |
-        ssh -o StrictHostKeyChecking=no $USER@$IP "
-          cd /path/to/your/project &&
+        ssh -o StrictHostKeyChecking=no $USER@$IP << 'EOF'
+          cd $PATH &&
           git pull origin main &&  # 拉取最新代码
           npm install &&           # 安装依赖
           npm run build &&         # 编译项目
-        "
+        EOF
