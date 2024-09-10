@@ -40,9 +40,4 @@ jobs:
         IP: ${{ secrets.TENCENT_CLOUD_IP }}
         PATH: ${{ secrets.TENCENT_CLOUD_PATH }}
       run: |
-        ssh -o StrictHostKeyChecking=no $USER@$IP << 'EOF'
-          cd $PATH &&
-          git pull origin main &&
-          npm install &&
-          npm run build
-        EOF
+        ssh -o StrictHostKeyChecking=no $USER@$IP "cd $PATH && git pull origin main && npm install && npm run build"
