@@ -14,21 +14,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # 第二步，设置 SSH 密钥
+    # 第二步，安装 SSH 客户端
+    - name: Install SSH
+      run: sudo apt-get install -y openssh-client
+
+    # 第三步，设置 SSH 密钥
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.TENCENT_CLOUD_SSH_KEY }}
 
-    # 第三步，使用 SSH 连接到腾讯云服务器并执行部署脚本
+    # 第四步，使用 SSH 连接到腾讯云服务器并执行部署脚本
     - name: Deploy to Tencent Cloud
       env:
         USER: ${{ secrets.TENCENT_CLOUD_USER }}
         IP: ${{ secrets.TENCENT_CLOUD_IP }}
-        PATH: ${{ secrets.TENCENT_CLOUD_PATH }}
       run: |
         ssh -o StrictHostKeyChecking=no $USER@$IP "
-          cd $PATH &&
+          cd /path/to/your/project &&
           git pull origin main &&  # 拉取最新代码
           npm install &&           # 安装依赖
           npm run build &&         # 编译项目
