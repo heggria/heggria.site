@@ -3,28 +3,37 @@ name: Deploy to Tencent Cloud
 on:
   push:
     branches:
-      - main  # 监听 main 分支的代码变化
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # 第一步，检查出仓库的代码
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # 第二步，安装 SSH 客户端
-    - name: Install SSH
-      run: sudo apt-get update && sudo apt-get install -y openssh-client
+    # 安装 SSH 客户端并测试
+    - name: Install and Test SSH
+      run: |
+        sudo apt-get update && sudo apt-get install -y openssh-client
+        ssh -V  # 测试 SSH 是否安装成功
 
-    # 第三步，设置 SSH 密钥
+    # 设置 SSH 密钥
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.TENCENT_CLOUD_SSH_KEY }}
 
-    # 第四步，使用 SSH 连接到腾讯云服务器并执行部署脚本
+    # 测试 SSH 连接
+    - name: Test SSH Connection
+      run: |
+        ssh -o StrictHostKeyChecking=no $USER@$IP echo "SSH connected successfully"
+      env:
+        USER: ${{ secrets.TENCENT_CLOUD_USER }}
+        IP: ${{ secrets.TENCENT_CLOUD_IP }}
+
+    # 部署到腾讯云
     - name: Deploy to Tencent Cloud
       env:
         USER: ${{ secrets.TENCENT_CLOUD_USER }}
@@ -33,7 +42,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no $USER@$IP << 'EOF'
           cd $PATH &&
-          git pull origin main &&  # 拉取最新代码
-          npm install &&           # 安装依赖
-          npm run build &&         # 编译项目
+          git pull origin main &&
+          npm install &&
+          npm run build
         EOF
