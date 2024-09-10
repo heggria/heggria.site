@@ -32,5 +32,4 @@ jobs:
           git pull origin main &&  # 拉取最新代码
           npm install &&           # 安装依赖
           npm run build &&         # 编译项目
-          pm2 restart all          # 重启服务（假设用 pm2 管理）
         "
