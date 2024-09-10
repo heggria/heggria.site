@@ -25,7 +25,7 @@ function slug(name: string) {
           GitHub
         </a>
         <a
-          href="https://releases.antfu.me"
+          href="https://releases.heggria.site"
           target="_blank"
           class="group btn-amber inline-block"
         >
@@ -36,7 +36,7 @@ function slug(name: string) {
           Recent Releases
         </a>
         <a
-          href="https://yak.antfu.me"
+          href="https://yak.heggria.site"
           target="_blank"
           class="group btn-lime inline-block"
         >
@@ -95,7 +95,7 @@ function slug(name: string) {
     </div>
     <div class="prose pb5 mx-auto mt10 text-center">
       <div block mt-5>
-        <a href="https://antfu.me/stars-rank" target="_blank" op50>All projects sort by Stars</a>
+        <a href="https://heggria.site/stars-rank" target="_blank" op50>All projects sort by Stars</a>
       </div>
       <hr>
       <SponsorButtons />

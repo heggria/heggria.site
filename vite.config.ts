@@ -142,8 +142,9 @@ export default defineConfig({
             'i18n Ally': 'https://github.com/lokalise/i18n-ally',
             'ESLint': 'https://github.com/eslint/eslint',
             'Astro': 'https://github.com/withastro/astro',
+            'React': 'https://github.com/meta/react',
             'TwoSlash': 'https://github.com/twoslashes/twoslash',
-            'Anthony Fu Collective': { link: 'https://opencollective.com/antfu', imageUrl: 'https://github.com/antfu-collective.png' },
+            'Heggria Collective': { link: 'https://opencollective.com/antfu', imageUrl: 'https://github.com/antfu-collective.png' },
             'Netlify': { link: 'https://netlify.com', imageUrl: 'https://github.com/netlify.png' },
             'Stackblitz': { link: 'https://stackblitz.com', imageUrl: 'https://github.com/stackblitz.png' },
             'Vercel': { link: 'https://vercel.com', imageUrl: 'https://github.com/vercel.png' },
@@ -151,10 +152,12 @@ export default defineConfig({
           imageOverrides: [
             ['https://github.com/vuejs/core', 'https://vuejs.org/logo.svg'],
             ['https://github.com/nuxt/nuxt', 'https://nuxt.com/assets/design-kit/icon-green.svg'],
+            ['https://github.com/nuxt/nuxt', 'https://nuxt.com/assets/design-kit/icon-green.svg'],
             ['https://github.com/vitejs/vite', 'https://vitejs.dev/logo.svg'],
             ['https://github.com/sponsors', 'https://github.com/github.png'],
             ['https://github.com/sponsors/antfu', 'https://github.com/github.png'],
             ['https://nuxtlabs.com', 'https://github.com/nuxtlabs.png'],
+            ['https://github.com/meta/react', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PGcgZmlsbD0ibm9uZSI+PHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIGZpbGw9IiMyNDI5MzgiIHJ4PSI2MCIvPjxwYXRoIGZpbGw9IiMwMGQ4ZmYiIGQ9Ik0xMjguMDAxIDE0Ni45NTFjMTAuMzA0IDAgMTguNjU2LTguMzUzIDE4LjY1Ni0xOC42NTZzLTguMzUyLTE4LjY1Ni0xOC42NTYtMTguNjU2cy0xOC42NTYgOC4zNTMtMTguNjU2IDE4LjY1NnM4LjM1MyAxOC42NTYgMTguNjU2IDE4LjY1NiIvPjxwYXRoIHN0cm9rZT0iIzAwZDhmZiIgc3Ryb2tlLXdpZHRoPSI4LjkxIiBkPSJNMTI4LjAwMiA5MC4zNjNjMjUuMDQ4IDAgNDguMzE3IDMuNTk0IDY1Ljg2MiA5LjYzNUMyMTUuMDAzIDEwNy4yNzUgMjI4IDExOC4zMDYgMjI4IDEyOC4yOTVjMCAxMC40MDktMTMuNzc0IDIyLjEyOC0zNi40NzUgMjkuNjQ5Yy0xNy4xNjIgNS42ODYtMzkuNzQ2IDguNjU0LTYzLjUyMyA4LjY1NGMtMjQuMzc4IDAtNDcuNDYzLTIuNzg2LTY0LjgxOS04LjcxN0M0MS4yMjUgMTUwLjM3NiAyOCAxMzguNTA2IDI4IDEyOC4yOTVjMC05LjkwOCAxMi40MS0yMC44NTQgMzMuMjUyLTI4LjEyYzE3LjYxLTYuMTQgNDEuNDUzLTkuODEyIDY2Ljc0Ni05LjgxMnoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIHN0cm9rZT0iIzAwZDhmZiIgc3Ryb2tlLXdpZHRoPSI4LjkxIiBkPSJNOTQuOTgxIDEwOS40MzhjMTIuNTE0LTIxLjY5OCAyNy4yNTEtNDAuMDYgNDEuMjQ5LTUyLjI0YzE2Ljg2NC0xNC42NzcgMzIuOTE0LTIwLjQyNSA0MS41NjYtMTUuNDM2YzkuMDE3IDUuMiAxMi4yODggMjIuOTg4IDcuNDYzIDQ2LjQxYy0zLjY0NSAxNy43MDctMTIuMzU5IDM4Ljc1My0yNC4yMzggNTkuMzUxYy0xMi4xNzkgMjEuMTE4LTI2LjEyNCAzOS43MjQtMzkuOTMxIDUxLjc5MmMtMTcuNDcxIDE1LjI3Mi0zNC4zNjIgMjAuNzk5LTQzLjIwNyAxNS42OThjLTguNTgzLTQuOTQ2LTExLjg2NS0yMS4xNjctNy43NDctNDIuODUyYzMuNDc5LTE4LjMyMyAxMi4yMS00MC44MTIgMjQuODQxLTYyLjcyM3oiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIHN0cm9rZT0iIzAwZDhmZiIgc3Ryb2tlLXdpZHRoPSI4LjkxIiBkPSJNOTUuMDEyIDE0Ny41NzhjLTEyLjU0OS0yMS42NzQtMjEuMDkzLTQzLjYxNi0yNC42NTktNjEuODI2Yy00LjI5My0yMS45NDEtMS4yNTgtMzguNzE2IDcuMzg3LTQzLjcyYzkuMDA5LTUuMjE2IDI2LjA1Mi44MzQgNDMuOTM0IDE2LjcxMmMxMy41MiAxMi4wMDQgMjcuNDAzIDMwLjA2MSAzOS4zMTYgNTAuNjM5YzEyLjIxNCAyMS4wOTggMjEuMzY4IDQyLjQ3MyAyNC45MjkgNjAuNDYxYzQuNTA2IDIyLjc2NC44NTkgNDAuMTU3LTcuOTc4IDQ1LjI3MmMtOC41NzQgNC45NjQtMjQuMjY1LS4yOTEtNDAuOTk2LTE0LjY4OWMtMTQuMTM2LTEyLjE2NC0yOS4yNi0zMC45NTktNDEuOTMzLTUyLjg0OVoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4='],
             [/opencollective\.com\/vite/, 'https://github.com/vitejs.png'],
             [/opencollective\.com\/elk/, 'https://github.com/elk-zone.png'],
           ],
@@ -175,7 +178,7 @@ export default defineConfig({
       //         ? fs.copy(`${id.slice(0, -3)}.png`, `public/${path}`)
       //         : generateOg(frontmatter.title!.replace(/\s-\s.*$/, '').trim(), `public/${path}`),
       //     )
-      //     frontmatter.image = `https://antfu.me/${path}`
+      //     frontmatter.image = `https://heggria.site/${path}`
       //   })()
       //   const head = defaults(frontmatter, options)
       //   return { head, frontmatter }
