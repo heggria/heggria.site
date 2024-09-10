@@ -1,0 +1,36 @@
+name: Deploy to Tencent Cloud
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的代码变化
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 第一步，检查出仓库的代码
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # 第二步，设置 SSH 密钥
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.TENCENT_CLOUD_SSH_KEY }}
+
+    # 第三步，使用 SSH 连接到腾讯云服务器并执行部署脚本
+    - name: Deploy to Tencent Cloud
+      env:
+        USER: ${{ secrets.TENCENT_CLOUD_USER }}
+        IP: ${{ secrets.TENCENT_CLOUD_IP }}
+        PATH: ${{ secrets.TENCENT_CLOUD_PATH }}
+      run: |
+        ssh -o StrictHostKeyChecking=no $USER@$IP "
+          cd $PATH &&
+          git pull origin main &&  # 拉取最新代码
+          npm install &&           # 安装依赖
+          npm run build &&         # 编译项目
+          pm2 restart all          # 重启服务（假设用 pm2 管理）
+        "
