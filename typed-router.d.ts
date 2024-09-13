@@ -25,6 +25,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/': RouteRecordInfo<'/posts/', '/posts', Record<never, never>, Record<never, never>>,
     '/posts/first-post': RouteRecordInfo<'/posts/first-post', '/posts/first-post', Record<never, never>, Record<never, never>>,
     '/posts/package-manager': RouteRecordInfo<'/posts/package-manager', '/posts/package-manager', Record<never, never>, Record<never, never>>,
+    '/posts/react-fiber': RouteRecordInfo<'/posts/react-fiber', '/posts/react-fiber', Record<never, never>, Record<never, never>>,
     '/posts/tankstank-query': RouteRecordInfo<'/posts/tankstank-query', '/posts/tankstank-query', Record<never, never>, Record<never, never>>,
   }
 }
