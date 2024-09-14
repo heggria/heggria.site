@@ -23,6 +23,7 @@ declare module 'vue-router/auto-routes' {
     '/bookmarks': RouteRecordInfo<'/bookmarks', '/bookmarks', Record<never, never>, Record<never, never>>,
     '/notes': RouteRecordInfo<'/notes', '/notes', Record<never, never>, Record<never, never>>,
     '/posts/': RouteRecordInfo<'/posts/', '/posts', Record<never, never>, Record<never, never>>,
+    '/posts/component-library-analysis': RouteRecordInfo<'/posts/component-library-analysis', '/posts/component-library-analysis', Record<never, never>, Record<never, never>>,
     '/posts/first-post': RouteRecordInfo<'/posts/first-post', '/posts/first-post', Record<never, never>, Record<never, never>>,
     '/posts/package-manager': RouteRecordInfo<'/posts/package-manager', '/posts/package-manager', Record<never, never>, Record<never, never>>,
     '/posts/react-fiber': RouteRecordInfo<'/posts/react-fiber', '/posts/react-fiber', Record<never, never>, Record<never, never>>,
