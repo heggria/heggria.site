@@ -42,7 +42,7 @@ onKeyStroke('Escape', (e) => {
   <NavBar />
   <main class="px-7 py-10 of-x-hidden">
     <RouterView />
-    <div class="mt-10 mb-6 prose m-auto flex slide-enter animate-delay-1200!">
+    <div :key="route.path" class="mt-10 mb-6 prose m-auto flex slide-enter animate-delay-1200!">
       <Giscus
         repo="heggria/heggria.site"
         repo-id="R_kgDOMu9i4g"
