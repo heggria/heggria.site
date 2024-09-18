@@ -21,6 +21,7 @@ import MarkdownItMagicLink from 'markdown-it-magic-link'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Exclude from 'vite-plugin-optimize-exclude'
+import { VitePluginRadar } from 'vite-plugin-radar'
 
 // @ts-expect-error missing types
 import TOC from 'markdown-it-table-of-contents'
@@ -224,6 +225,13 @@ export default defineConfig({
         await Promise.all(promises)
       },
     },
+
+    VitePluginRadar({
+      // Google Analytics tag injection
+      analytics: {
+        id: 'G-1N60V340SV',
+      },
+    }),
   ],
 
   build: {
