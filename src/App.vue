@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Giscus from '@giscus/vue'
+import { isDark } from './logics'
 
 const route = useRoute()
 
@@ -52,7 +53,7 @@ onKeyStroke('Escape', (e) => {
         reactions-enabled="1"
         emit-metadata="0"
         input-position="top"
-        theme="preferred_color_scheme"
+        :theme="isDark ? 'dark' : 'light'"
         lang="zh-CN"
         loading="lazy"
         crossorigin="anonymous"

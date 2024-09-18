@@ -13,7 +13,7 @@ import Giscus from '@giscus/vue'
     reactions-enabled="1"
     emit-metadata="0"
     input-position="top"
-    theme="preferred_color_scheme"
+    :theme="isDark ? 'light' : 'dark'"
     lang="zh-CN"
     loading="lazy"
     crossorigin="anonymous"
