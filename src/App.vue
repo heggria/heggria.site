@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Giscus from '@giscus/vue'
+
 const route = useRoute()
 
 const imageModel = ref<HTMLImageElement>()
@@ -39,6 +41,23 @@ onKeyStroke('Escape', (e) => {
   <NavBar />
   <main class="px-7 py-10 of-x-hidden">
     <RouterView />
+    <div class="mt-10 mb-6 prose m-auto flex slide-enter animate-delay-1200!">
+      <Giscus
+        repo="heggria/heggria.site"
+        repo-id="R_kgDOMu9i4g"
+        category="Announcements"
+        category-id="DIC_kwDOMu9i4s4Cikd8"
+        mapping="pathname"
+        strict="1"
+        reactions-enabled="1"
+        emit-metadata="0"
+        input-position="top"
+        theme="preferred_color_scheme"
+        lang="zh-CN"
+        loading="lazy"
+        crossorigin="anonymous"
+      />
+    </div>
     <Footer :key="route.path" />
   </main>
   <Transition name="fade">

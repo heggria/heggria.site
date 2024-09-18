@@ -13,6 +13,7 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@giscus/vue": "^3.0.0",
     "@vueuse/core": "^11.0.0",
     "dayjs": "^1.11.12",
     "floating-vue": "^5.2.2",
