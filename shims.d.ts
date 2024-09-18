@@ -5,3 +5,7 @@ declare module 'vue-router' {
     frontmatter: any
   }
 }
+
+declare interface Window {
+  totalOnline: number
+}

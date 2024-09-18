@@ -23,5 +23,24 @@
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ezshine/oneline.js@1.0.0/oneline.js"></script>
+    <script>
+      Object.defineProperty(window, 'totalOnline', {
+        get() {
+          return window.totalOnlineV
+        },
+        set(newValue) {
+          window.totalOnlineV = newValue
+          // 手动触发更新或其他逻辑
+          const event = new CustomEvent('TotalOnlineChanged', { detail: { count: newValue || 1 } })
+          console.log(newValue)
+
+          window.dispatchEvent(event)
+        },
+      })
+      new Oneline('jhasflkhasljkfas89sa082100ss9af').on('OnelineUpdate', (e) => {
+        window.totalOnline = e.detail.count
+      })
+    </script>
   </body>
 </html>
