@@ -34,6 +34,10 @@ const { y: scroll } = useWindowScroll()
           <span class="lt-md:hidden">Blog</span>
           <div i-ri-article-line md:hidden />
         </RouterLink>
+        <RouterLink to="/playground" title="Playground">
+          <span class="lt-md:hidden">Playground</span>
+          <div i-mingcute-playground-line md:hidden />
+        </RouterLink>
         <a href="https://twitter.com/heggria" target="_blank" title="Twitter" class="lt-md:hidden">
           <div i-ri-twitter-x-fill />
         </a>

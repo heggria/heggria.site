@@ -23,6 +23,8 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Exclude from 'vite-plugin-optimize-exclude'
 import { VitePluginRadar } from 'vite-plugin-radar'
 
+import { PrimeVueResolver } from '@primevue/auto-import-resolver'
+
 // @ts-expect-error missing types
 import TOC from 'markdown-it-table-of-contents'
 // import sharp from 'sharp'
@@ -202,6 +204,7 @@ export default defineConfig({
         IconsResolver({
           componentPrefix: '',
         }),
+        PrimeVueResolver(),
       ],
     }),
 

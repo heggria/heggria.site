@@ -19,7 +19,28 @@ import LocalizedFormat from 'dayjs/plugin/localizedFormat.js'
 import { setupRouterScroller } from 'vue-router-better-scroller'
 import FloatingVue from 'floating-vue'
 import { createPinia } from 'pinia'
+import PrimeVue from 'primevue/config'
+import Lara from '@primevue/themes/aura'
+import { definePreset } from '@primevue/themes'
 import App from './App.vue'
+
+const MyPreset = definePreset(Lara, {
+  semantic: {
+    primary: {
+      50: '{black.50}',
+      100: '{black.100}',
+      200: '{black.200}',
+      300: '{black.300}',
+      400: '{black.400}',
+      500: '{black.500}',
+      600: '{black.600}',
+      700: '{black.700}',
+      800: '{black.800}',
+      900: '{black.900}',
+      950: '{black.950}',
+    },
+  },
+})
 
 export const createApp = ViteSSG(
   App,
@@ -31,6 +52,14 @@ export const createApp = ViteSSG(
 
     app.use(FloatingVue)
     app.use(createPinia())
+    app.use(PrimeVue, {
+      theme: {
+        preset: MyPreset,
+        options: {
+          darkModeSelector: '.dark',
+        },
+      },
+    })
 
     if (isClient) {
       const html = document.querySelector('html')!
