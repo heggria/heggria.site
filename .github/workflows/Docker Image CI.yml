@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install pnpm
         run: npm i -g pnpm
@@ -34,7 +34,7 @@ jobs:
     needs: build # 依赖于 build job
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Download dist artifact
         uses: actions/download-artifact@v4
@@ -44,6 +44,12 @@ jobs:
       - name: Login to Tencent Cloud Registry
         run: |
           docker login --username=${{ secrets.DOCKER_USERNAME }} ccr.ccs.tencentyun.com --password=${{ secrets.DOCKER_PASSWORD }}
+
+      # 将 dist 文件夹复制到当前目录下，确保 Dockerfile 可以访问到
+      - name: Prepare build context
+        run: |
+          mkdir -p ./dist
+          cp -r ./dist/* ./ # 将下载的 dist 复制到构建上下文中
 
       - name: Build Docker image
         run: |
