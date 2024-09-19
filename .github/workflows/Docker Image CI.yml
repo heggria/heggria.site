@@ -1,6 +1,5 @@
-name: Docker Image CI # Actions名称
+name: Docker Image CI
 on:
-  # 触发workflow的动作形式，这里是手动触发
   push:
 jobs:
   build:
@@ -8,27 +7,35 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
-      # 安装依赖
+
+      # 安装依赖，并缓存 pnpm 缓存以提升构建速度
       - name: install pnpm
         run: npm i -g pnpm
-      # 安装依赖
-      - name: install
-        run: pnpm i
-      # 打包
+
+      - name: install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 打包项目
       - name: build project
         run: pnpm run build
-      # 打包镜像推送到腾讯云容器镜像服务
-      - name: Build the Docker image
+
+      # 构建并推送 Docker 镜像
+      - name: Build and push Docker image
         run: |
-          docker login --username=${{ secrets.DOCKER_USERNAME }} ccr.ccs.tencentyun.com --password=${{ secrets.DOCKER_PASSWORD }}
+          docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} ccr.ccs.tencentyun.com
           docker build -t heggria:latest .
           docker tag heggria ccr.ccs.tencentyun.com/heggria/blog:latest
           docker push ccr.ccs.tencentyun.com/heggria/blog:latest
-      # 使用appleboy/ssh-action@master登录服务器执行拉取镜像脚本，服务器ip、用户名、密码配置方式同容器镜像服务配置方式一样
-      - name: ssh docker login
+
+      # SSH 登录并执行脚本
+      - name: SSH and pull new image
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: cd ~ && sh heggria.site.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
+          script: |
+            cd ~/heggria.site
+            docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} ccr.ccs.tencentyun.com
+            docker-compose pull
+            docker-compose up -d
