@@ -26,19 +26,19 @@ import App from './App.vue'
 
 const MyPreset = definePreset(Lara, {
   semantic: {
-    primary: {
-      50: '{black.50}',
-      100: '{black.100}',
-      200: '{black.200}',
-      300: '{black.300}',
-      400: '{black.400}',
-      500: '{black.500}',
-      600: '{black.600}',
-      700: '{black.700}',
-      800: '{black.800}',
-      900: '{black.900}',
-      950: '{black.950}',
-    },
+    // primary: {
+    //   50: '{black.50}',
+    //   100: '{black.100}',
+    //   200: '{black.200}',
+    //   300: '{black.300}',
+    //   400: '{black.400}',
+    //   500: '{black.500}',
+    //   600: '{black.600}',
+    //   700: '{black.700}',
+    //   800: '{black.800}',
+    //   900: '{black.900}',
+    //   950: '{black.950}',
+    // },
   },
 })
 
