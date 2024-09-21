@@ -23,6 +23,7 @@ import PrimeVue from 'primevue/config'
 import Lara from '@primevue/themes/aura'
 import { definePreset } from '@primevue/themes'
 import ToastService from 'primevue/toastservice'
+import Tooltip from 'primevue/tooltip'
 import App from './App.vue'
 
 const MyPreset = definePreset(Lara, {
@@ -92,6 +93,7 @@ export const createApp = ViteSSG(
       },
     })
     app.use(ToastService)
+    app.directive('tooltip', Tooltip)
 
     if (isClient) {
       const html = document.querySelector('html')!

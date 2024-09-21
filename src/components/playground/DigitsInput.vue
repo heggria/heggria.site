@@ -4,6 +4,7 @@ defineOptions({
 })
 defineProps<{
   label: string
+  description?: string
   min?: number
   max?: number
 }>()
@@ -13,7 +14,7 @@ const value = defineModel<[number, number]>({
 </script>
 
 <template>
-  <FloatLabel>
+  <FormField :label :description>
     <InputGroup>
       <InputNumber
         :model-value="value[0] * 100" suffix="%" :use-grouping="false" :min-fraction-digits="0" :max-fraction-digits="2"
@@ -28,6 +29,5 @@ const value = defineModel<[number, number]>({
         @update:model-value="v => value[1] = v / 100"
       />
     </InputGroup>
-    <label for="username">{{ label }}</label>
-  </FloatLabel>
+  </FormField>
 </template>

@@ -124,65 +124,64 @@ function handleCityChange() {
 <template>
   <div>
     <Fieldset legend="基本参数">
-      <div class="pt-4 grid grid-rows-4 md:grid-rows-2 gap-8 grid-cols-1 md:grid-cols-2 auto-rows-max">
-        <FloatLabel>
+      <div class="grid grid-rows-4 md:grid-rows-2 gap-4 grid-cols-1 md:grid-cols-2 auto-rows-max">
+        <FormField label="月 base" description="月基本工资">
           <InputNumber
-            v-model="salaryInfo.monthBase" prefix="¥ " :use-grouping="false" :min-fraction-digits="0"
+            v-model="salaryInfo.monthBase"
+            v-tooltip.focus.top="'社保&'"
+            prefix="¥ " :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="2" fluid w-full :min="0" :step="1000" show-buttons button-layout="horizontal"
           />
-          <label for="username">月 base</label>
-        </FloatLabel>
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="计薪月数" description="该年度在公司工作了几个月">
           <InputNumber
-            v-model="salaryInfo.totalMonth" :use-grouping="false" :min-fraction-digits="0"
+            v-model="salaryInfo.totalMonth"
+            v-tooltip.focus.top="'月基本工资'" :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="1" fluid w-full :min="0" :max="12" :step="0.5" show-buttons button-layout="horizontal"
             mode="decimal"
           />
-          <label for="username">计薪月数（该年度在公司的月数）</label>
-        </FloatLabel>
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="年终月数" description="每年期望得到的年终奖月数，独立计税">
           <InputNumber
             v-model="salaryInfo.bonusMonth" :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="1" fluid w-full :min="0" :step="0.5" show-buttons button-layout="horizontal"
             mode="decimal"
           />
-          <label for="username">年终月数（独立计税）</label>
-        </FloatLabel>
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="月加班天数" description="几倍工资计几天">
           <InputNumber
             v-model="salaryInfo.workOvertimeDays" :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="1" fluid w-full :min="0" :step="0.5" show-buttons button-layout="horizontal"
             mode="decimal"
           />
-          <label for="username">月加班天数（几倍工资计几天）</label>
-        </FloatLabel>
+          <label for="username" />
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="月补贴" description="房补、车补、饭补等，如果有绩效也可以加上">
           <InputNumber
             v-model="salaryInfo.monthSubsidy" prefix="¥ " :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="2" fluid w-full :min="0" :step="100" show-buttons
             button-layout="horizontal"
           />
-          <label for="username">月补贴</label>
-        </FloatLabel>
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="所在城市" description="点击同步按钮可将工资填入社保&公积金基数">
           <InputGroup>
             <Select
-              v-model="salaryInfo.selectedCity" :options="UrbanPolicy" option-value="id" option-label="name"
+              v-model="salaryInfo.selectedCity"
+              :options="UrbanPolicy" option-value="id" option-label="name"
               w-full @change="handleCityChange"
             />
-            <Button outlined @click="handleSyncClick">
+            <Button severity="info" @click="handleSyncClick">
               同步 base 至基数
             </Button>
           </InputGroup>
-          <label for="username">城市</label>
-        </FloatLabel>
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="社保基数" description="点击上下限可快速填入">
           <InputGroup>
             <Button outlined @click="salaryInfo.socialSecurityBase = selectedCity.insuranceData.ssBaseRange[0]">
               {{ selectedCity.insuranceData.ssBaseRange[0] }}
@@ -196,10 +195,9 @@ function handleCityChange() {
               {{ selectedCity.insuranceData.ssBaseRange[1] }}
             </Button>
           </InputGroup>
-          <label for="username">社保基数</label>
-        </FloatLabel>
+        </FormField>
 
-        <FloatLabel>
+        <FormField label="公积金基数" description="点击上下限可快速填入">
           <InputGroup>
             <Button outlined @click="salaryInfo.providentFundBase = selectedCity.insuranceData.shBaseRange[0]">
               {{ selectedCity.insuranceData.shBaseRange[0] }}
@@ -213,13 +211,12 @@ function handleCityChange() {
               {{ selectedCity.insuranceData.shBaseRange[1] }}
             </Button>
           </InputGroup>
-          <label for="username">公积金基数</label>
-        </FloatLabel>
+        </FormField>
       </div>
     </Fieldset>
     <Fieldset legend="险金比例（个人-公司）">
-      <div class="py-4 grid grid-rows-3 md:grid-rows-2 gap-8 grid-cols-2 md:grid-cols-3 auto-rows-max">
-        <DigitsInput v-model="salaryInfo.insuranceData.housingFund" label="公积金" />
+      <div class="grid grid-rows-3 md:grid-rows-2 gap-4 grid-cols-2 md:grid-cols-3 auto-rows-max">
+        <DigitsInput v-model="salaryInfo.insuranceData.housingFund" description="有补充公积金的加上" label="公积金" />
         <DigitsInput v-model="salaryInfo.insuranceData.pension" label="养老" />
         <DigitsInput v-model="salaryInfo.insuranceData.medical" label="医保" />
         <DigitsInput v-model="salaryInfo.insuranceData.maternity" label="生育" />

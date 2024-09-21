@@ -21,6 +21,7 @@ declare module 'vue' {
     Fieldset: typeof import('primevue/fieldset')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    FormField: typeof import('./src/components/playground/FormField.vue')['default']
     Giscus: typeof import('~icons/gis/cus')['default']
     GitHubLink: typeof import('./src/components/GitHubLink.vue')['default']
     ImageMatrix: typeof import('./src/components/qrcode/ImageMatrix.vue')['default']
@@ -78,5 +79,8 @@ declare module 'vue' {
     WrapperDemo: typeof import('./src/components/WrapperDemo.vue')['default']
     WrapperPost: typeof import('./src/components/WrapperPost.vue')['default']
     YouTubeEmbed: typeof import('./src/components/YouTubeEmbed.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    Tooltip: typeof import('primevue/tooltip')['default']
   }
 }
