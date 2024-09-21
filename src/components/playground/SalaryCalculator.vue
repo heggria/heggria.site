@@ -129,7 +129,6 @@ function handleCityChange() {
           <InputNumber
             v-model="salaryInfo.monthBase" prefix="¥ " :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="2" fluid w-full :min="0" :step="1000" show-buttons button-layout="horizontal"
-            :allow-empty="false"
           />
           <label for="username">月 base</label>
         </FloatLabel>
@@ -138,7 +137,7 @@ function handleCityChange() {
           <InputNumber
             v-model="salaryInfo.totalMonth" :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="1" fluid w-full :min="0" :max="12" :step="0.5" show-buttons button-layout="horizontal"
-            mode="decimal" :allow-empty="false"
+            mode="decimal"
           />
           <label for="username">计薪月数（该年度在公司的月数）</label>
         </FloatLabel>
@@ -147,7 +146,7 @@ function handleCityChange() {
           <InputNumber
             v-model="salaryInfo.bonusMonth" :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="1" fluid w-full :min="0" :step="0.5" show-buttons button-layout="horizontal"
-            mode="decimal" :allow-empty="false"
+            mode="decimal"
           />
           <label for="username">年终月数（独立计税）</label>
         </FloatLabel>
@@ -156,7 +155,7 @@ function handleCityChange() {
           <InputNumber
             v-model="salaryInfo.workOvertimeDays" :use-grouping="false" :min-fraction-digits="0"
             :max-fraction-digits="1" fluid w-full :min="0" :step="0.5" show-buttons button-layout="horizontal"
-            mode="decimal" :allow-empty="false"
+            mode="decimal"
           />
           <label for="username">月加班天数（几倍工资计几天）</label>
         </FloatLabel>
@@ -164,7 +163,7 @@ function handleCityChange() {
         <FloatLabel>
           <InputNumber
             v-model="salaryInfo.monthSubsidy" prefix="¥ " :use-grouping="false" :min-fraction-digits="0"
-            :allow-empty="false" :max-fraction-digits="2" fluid w-full :min="0" :step="100" show-buttons
+            :max-fraction-digits="2" fluid w-full :min="0" :step="100" show-buttons
             button-layout="horizontal"
           />
           <label for="username">月补贴</label>
@@ -190,7 +189,7 @@ function handleCityChange() {
             </Button>
             <InputNumber
               v-model="salaryInfo.socialSecurityBase" :use-grouping="false" suffix=""
-              input-id="withoutgrouping" w-full :min="selectedCity.insuranceData.ssBaseRange[0]" :allow-empty="false"
+              input-id="withoutgrouping" w-full :min="selectedCity.insuranceData.ssBaseRange[0]"
               :max="selectedCity.insuranceData.ssBaseRange[1]"
             />
             <Button outlined @click="salaryInfo.socialSecurityBase = selectedCity.insuranceData.ssBaseRange[1]">
@@ -207,7 +206,7 @@ function handleCityChange() {
             </Button>
             <InputNumber
               v-model="salaryInfo.providentFundBase" :use-grouping="false" suffix=""
-              input-id="minmaxfraction" w-full :min="selectedCity.insuranceData.shBaseRange[0]" :allow-empty="false"
+              input-id="minmaxfraction" w-full :min="selectedCity.insuranceData.shBaseRange[0]"
               :max="selectedCity.insuranceData.shBaseRange[1]"
             />
             <Button outlined @click="salaryInfo.providentFundBase = selectedCity.insuranceData.shBaseRange[1]">
