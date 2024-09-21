@@ -1,20 +1,6 @@
-// 定义保险项类型
-type InsuranceItem = [number, number]
+import type { Policy } from './shared'
 
-// 定义所有保险项目的类型
-export interface InsuranceData {
-  baseRange: InsuranceItem // 基本范围
-  pension: InsuranceItem // 养老保险
-  medical: InsuranceItem // 医疗保险
-  unemployment: InsuranceItem // 失业保险
-  injury: InsuranceItem // 工伤保险
-  maternity: InsuranceItem // 生育保险
-  housingFund: InsuranceItem // 基本住房公积金
-  supplementaryHousingFund: InsuranceItem // 补充住房公积金
-  rentalTaxRefund: number // 租房退税额度
-}
-
-export const UrbanPolicy = [
+export const UrbanPolicy: Policy[] = [
   {
     id: 'BJ',
     group: 1,
@@ -26,7 +12,7 @@ export const UrbanPolicy = [
       medical: [0.02, 0.1],
       unemployment: [0.002, 0.008],
       injury: [0, 0.02],
-      maternity: [0, 0.8],
+      maternity: [0, 0.008],
       housingFund: [0.12, 0.12],
       supplementaryHousingFund: [0, 0],
       rentalTaxRefund: 1500,

@@ -16,6 +16,7 @@ declare module 'vue' {
     Card: typeof import('primevue/card')['default']
     Comments: typeof import('./src/components/Comments.vue')['default']
     DarkToggleButton: typeof import('./src/components/slides/DarkToggleButton.vue')['default']
+    DigitsInput: typeof import('./src/components/playground/DigitsInput.vue')['default']
     Elk: typeof import('./src/components/icons/Elk.vue')['default']
     Fieldset: typeof import('primevue/fieldset')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
