@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { UrbanPolicy } from './constants'
 import type { SalaryInfo } from './shared'
-import { calculateAnnualPersonalIncomeTax } from './utils'
+import { calculateAnnualPersonalIncomeTax, compressSalaryInfo, decompressSalaryInfo } from './utils'
 
-const salaryInfo = ref<SalaryInfo>({
+const { copy, copied, isSupported } = useClipboard()
+function copyUrl() {
+  const url = location.href
+  copy(url)
+}
+
+const defaultValue: SalaryInfo = {
   selectedCity: UrbanPolicy[0].id,
   monthBase: 10000,
   totalMonth: 12,
@@ -22,6 +28,45 @@ const salaryInfo = ref<SalaryInfo>({
     elderCare: [false, 3000, 12],
     infantCare: [false, 2000, 12],
   },
+}
+
+const salaryInfo = ref<SalaryInfo>(defaultValue)
+// 生成 URL Base64 参数
+function generateUrlParam() {
+  const encoded = btoa(encodeURIComponent(JSON.stringify(compressSalaryInfo(salaryInfo.value))))
+  return `?salaryInfo=${encoded}`
+}
+
+// 解析 URL 参数并设置 salaryInfo
+function setSalaryInfoFromUrl() {
+  const params = new URLSearchParams(window.location.search)
+  const encodedInfo = params.get('salaryInfo')
+  if (encodedInfo) {
+    try {
+      const decoded = decodeURIComponent(atob(encodedInfo))
+      const parsedInfo = decompressSalaryInfo(JSON.parse(decoded))
+      salaryInfo.value = { ...salaryInfo.value, ...parsedInfo }
+    }
+    catch (error) {
+      console.error('解析 salaryInfo URL 参数时出错:', error)
+    }
+  }
+}
+
+// 将数据变化同步到 URL，不影响 history
+function syncSalaryInfoToUrl() {
+  const newUrlParam = generateUrlParam()
+  const newUrl = `${window.location.pathname}${newUrlParam}`
+  window.history.replaceState({}, '', newUrl)
+}
+
+// 监听 salaryInfo 的变化
+watch(salaryInfo, () => {
+  syncSalaryInfoToUrl()
+}, { deep: true })
+
+onMounted(() => {
+  setSalaryInfoFromUrl()
 })
 
 const selectedCity = computed(() => {
@@ -233,6 +278,10 @@ function handleCityChange() {
             {{ salaryCount.providentFundCount.toFixed(2) }}
           </template>
         </Card>
+
+        <Button v-if="isSupported" class="col-span-2 md:col-span-3" :severity="copied ? 'success' : 'secondary'" raised @click="copyUrl">
+          {{ copied ? '复制成功' : '复制分享链接' }}
+        </Button>
       </div>
     </Fieldset>
     <Fieldset legend="个税附加扣除">

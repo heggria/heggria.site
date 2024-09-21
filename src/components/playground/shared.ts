@@ -42,5 +42,5 @@ export interface SalaryInfo {
     housingLoanInterest: Option
     elderCare: Option
     infantCare: Option
-  }
+  } & Record<string, any>
 }

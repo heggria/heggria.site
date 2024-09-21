@@ -63,6 +63,7 @@ declare module 'vue' {
     SubNav: typeof import('./src/components/SubNav.vue')['default']
     TalkDate: typeof import('./src/components/TalkDate.vue')['default']
     TextCopy: typeof import('./src/components/TextCopy.vue')['default']
+    Toast: typeof import('primevue/toast')['default']
     ToggleButton: typeof import('primevue/togglebutton')['default']
     ToggleSwitch: typeof import('primevue/toggleswitch')['default']
     ToggleTheme: typeof import('./src/components/ToggleTheme.vue')['default']

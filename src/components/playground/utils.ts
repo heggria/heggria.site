@@ -1,3 +1,5 @@
+import type { SalaryInfo } from './shared'
+
 interface TaxBracket {
   min: number
   max: number
@@ -53,4 +55,52 @@ export function calculateAnnualPersonalIncomeTax(annualIncome: number, annualBon
 
   // 3. 返回工资税额和年终奖金税额的总和
   return Math.max(salaryTax + bonusTax, 0)
+}
+
+export function compressSalaryInfo(salaryInfo: SalaryInfo) {
+  return {
+    sc: salaryInfo.selectedCity,
+    mb: salaryInfo.monthBase,
+    tm: salaryInfo.totalMonth,
+    ms: salaryInfo.monthSubsidy,
+    bm: salaryInfo.bonusMonth,
+    wod: salaryInfo.workOvertimeDays,
+    ssb: salaryInfo.socialSecurityBase,
+    pfb: salaryInfo.providentFundBase,
+    id: salaryInfo.insuranceData,
+    // options 压缩为紧凑的字符串形式
+    opt: Object.values(salaryInfo.options)
+      .map(([enabled, amount, months]) => `${+enabled},${amount},${months}`)
+      .join(';'),
+  }
+}
+
+export function decompressSalaryInfo(data: Record<string, any>) {
+  const optionsKeys = [
+    'rentalTaxRefund',
+    'continuingEducation',
+    'skillCertificate',
+    'childEducation',
+    'housingLoanInterest',
+    'elderCare',
+    'infantCare',
+  ]
+
+  return {
+    selectedCity: data.sc,
+    monthBase: data.mb,
+    totalMonth: data.tm,
+    monthSubsidy: data.ms,
+    bonusMonth: data.bm,
+    workOvertimeDays: data.wod,
+    socialSecurityBase: data.ssb,
+    providentFundBase: data.pfb,
+    insuranceData: data.id,
+    // 解压缩并解析 options 部分
+    options: data.opt.split(';').reduce((acc: any, curr: any, index: number) => {
+      const [enabled, amount, months] = curr.split(',').map(Number)
+      acc[optionsKeys[index]] = [!!enabled, amount, months]
+      return acc
+    }, {} as SalaryInfo['options']),
+  }
 }

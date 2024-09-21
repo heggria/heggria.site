@@ -22,6 +22,7 @@ import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import Lara from '@primevue/themes/aura'
 import { definePreset } from '@primevue/themes'
+import ToastService from 'primevue/toastservice'
 import App from './App.vue'
 
 const MyPreset = definePreset(Lara, {
@@ -90,6 +91,7 @@ export const createApp = ViteSSG(
         },
       },
     })
+    app.use(ToastService)
 
     if (isClient) {
       const html = document.querySelector('html')!
