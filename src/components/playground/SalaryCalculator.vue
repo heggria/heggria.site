@@ -122,9 +122,9 @@ function handleCityChange() {
 </script>
 
 <template>
-  <div py-4>
+  <div>
     <Fieldset legend="基本参数">
-      <div class="py-4 grid grid-rows-4 md:grid-rows-2 gap-8 grid-cols-1 md:grid-cols-2 auto-rows-max">
+      <div class="pt-4 grid grid-rows-4 md:grid-rows-2 gap-8 grid-cols-1 md:grid-cols-2 auto-rows-max">
         <FloatLabel>
           <InputNumber
             v-model="salaryInfo.monthBase" prefix="¥ " :use-grouping="false" :min-fraction-digits="0"
@@ -229,7 +229,7 @@ function handleCityChange() {
       </div>
     </Fieldset>
     <Fieldset legend="收入">
-      <div class="py-4 grid grid-rows-3 md:grid-rows-2 gap-8 grid-cols-2 md:grid-cols-3 auto-rows-max">
+      <div class="grid grid-rows-3 md:grid-rows-2 gap-4 grid-cols-2 md:grid-cols-3 auto-rows-max">
         <Card>
           <template #title>
             税前
@@ -248,7 +248,7 @@ function handleCityChange() {
         </Card>
         <Card>
           <template #title>
-            税后 + 公积金
+            税后+公积金
           </template>
           <template #content>
             {{ salaryCount.realIncome.toFixed(2) }}
@@ -285,7 +285,7 @@ function handleCityChange() {
       </div>
     </Fieldset>
     <Fieldset legend="个税附加扣除">
-      <div class="py-4 grid grid-rows-4 md:grid-rows-2 gap-4 grid-cols-1 md:grid-cols-2 auto-rows-max">
+      <div class="grid grid-rows-4 md:grid-rows-2 gap-4 grid-cols-1 md:grid-cols-2 auto-rows-max">
         <ToggleButton
           v-model="salaryInfo.options.rentalTaxRefund[0]" off-label="租房"
           :on-label="`住房租金：${salaryInfo.options.rentalTaxRefund[1]} * ${salaryInfo.options.rentalTaxRefund[2]}`"
