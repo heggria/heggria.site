@@ -17,17 +17,19 @@ const value = defineModel<[number, number]>({
   <FormField :label :description>
     <InputGroup>
       <InputNumber
-        :model-value="value[0] * 100" suffix="%" :use-grouping="false" :min-fraction-digits="0" :max-fraction-digits="2"
-        fluid w-full :min :max :step="1"
-        @update:model-value="v => value[0] = v / 100"
+        :model-value="value[0] * 100" suffix="%" :use-grouping="false" :min-fraction-digits="0"
+        :max-fraction-digits="2" fluid w-full :min :max :step="1" @update:model-value="v => value[0] = v / 100"
       />
       <InputNumber
-        :model-value="value[1] * 100"
-        suffix="%" :use-grouping="false" :min-fraction-digits="0"
-        :max-fraction-digits="2" fluid w-full :min :max :step="1"
-
-        @update:model-value="v => value[1] = v / 100"
+        :model-value="value[1] * 100" suffix="%" :use-grouping="false" :min-fraction-digits="0"
+        :max-fraction-digits="2" fluid w-full :min :max :step="1" @update:model-value="v => value[1] = v / 100"
       />
     </InputGroup>
   </FormField>
 </template>
+
+<style scoped>
+:deep(input) {
+  padding: 0.1rem 0.6rem;
+}
+</style>

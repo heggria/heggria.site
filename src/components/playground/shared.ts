@@ -43,4 +43,5 @@ export interface SalaryInfo {
     elderCare: Option
     infantCare: Option
   } & Record<string, any>
+  insuranceDataEdit: boolean
 }

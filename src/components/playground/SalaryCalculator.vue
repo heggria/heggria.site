@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { UrbanPolicy } from './constants'
 import type { SalaryInfo } from './shared'
-import { calculateAnnualPersonalIncomeTax, compressSalaryInfo, decompressSalaryInfo } from './utils'
+import { calculateAnnualPersonalIncomeTax } from './utils'
 
 const { copy, copied, isSupported } = useClipboard()
 function copyUrl() {
@@ -28,12 +28,14 @@ const defaultValue: SalaryInfo = {
     elderCare: [false, 3000, 12],
     infantCare: [false, 2000, 12],
   },
+  insuranceDataEdit: true,
 }
 
+const insuranceDataEdit = ref(true)
 const salaryInfo = ref<SalaryInfo>(defaultValue)
 // 生成 URL Base64 参数
 function generateUrlParam() {
-  const encoded = btoa(encodeURIComponent(JSON.stringify(compressSalaryInfo(salaryInfo.value))))
+  const encoded = btoa(encodeURIComponent(JSON.stringify(salaryInfo.value)))
   return `?salaryInfo=${encoded}`
 }
 
@@ -44,7 +46,7 @@ function setSalaryInfoFromUrl() {
   if (encodedInfo) {
     try {
       const decoded = decodeURIComponent(atob(encodedInfo))
-      const parsedInfo = decompressSalaryInfo(JSON.parse(decoded))
+      const parsedInfo = JSON.parse(decoded)
       salaryInfo.value = { ...salaryInfo.value, ...parsedInfo }
     }
     catch (error) {
@@ -124,7 +126,7 @@ function handleCityChange() {
 <template>
   <div>
     <Fieldset legend="基本参数">
-      <div class="grid grid-rows-4 md:grid-rows-2 gap-4 grid-cols-1 md:grid-cols-2 auto-rows-max">
+      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 auto-rows-max">
         <FormField label="月 base" description="月基本工资">
           <InputNumber
             v-model="salaryInfo.monthBase"
@@ -215,19 +217,24 @@ function handleCityChange() {
       </div>
     </Fieldset>
     <Fieldset legend="险金比例（个人-公司）">
-      <div class="grid grid-rows-3 md:grid-rows-2 gap-4 grid-cols-2 md:grid-cols-3 auto-rows-max">
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 auto-rows-max">
         <DigitsInput v-model="salaryInfo.insuranceData.housingFund" description="有补充公积金的加上" label="公积金" />
-        <DigitsInput v-model="salaryInfo.insuranceData.pension" label="养老" />
-        <DigitsInput v-model="salaryInfo.insuranceData.medical" label="医保" />
-        <DigitsInput v-model="salaryInfo.insuranceData.maternity" label="生育" />
-        <DigitsInput v-model="salaryInfo.insuranceData.injury" label="工伤" />
-        <DigitsInput v-model="salaryInfo.insuranceData.unemployment" label="失业" />
+        <Button v-if="insuranceDataEdit" outlined @click="insuranceDataEdit = !insuranceDataEdit">
+          点击编辑其他比例
+        </Button>
+        <template v-else>
+          <DigitsInput v-model="salaryInfo.insuranceData.pension" label="养老" />
+          <DigitsInput v-model="salaryInfo.insuranceData.medical" label="医保" />
+          <DigitsInput v-model="salaryInfo.insuranceData.maternity" label="生育" />
+          <DigitsInput v-model="salaryInfo.insuranceData.injury" label="工伤" />
+          <DigitsInput v-model="salaryInfo.insuranceData.unemployment" label="失业" />
+        </template>
       </div>
     </Fieldset>
     <Fieldset legend="收入">
-      <div class="grid grid-rows-3 md:grid-rows-2 gap-4 grid-cols-2 md:grid-cols-3 auto-rows-max">
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 auto-rows-max">
         <Card>
-          <template #title>
+          <template #subtitle>
             税前
           </template>
           <template #content>
@@ -235,7 +242,7 @@ function handleCityChange() {
           </template>
         </Card>
         <Card>
-          <template #title>
+          <template #subtitle>
             税后
           </template>
           <template #content>
@@ -243,7 +250,7 @@ function handleCityChange() {
           </template>
         </Card>
         <Card>
-          <template #title>
+          <template #subtitle>
             税后+公积金
           </template>
           <template #content>
@@ -251,7 +258,7 @@ function handleCityChange() {
           </template>
         </Card>
         <Card>
-          <template #title>
+          <template #subtitle>
             养老个账
           </template>
           <template #content>
@@ -259,7 +266,7 @@ function handleCityChange() {
           </template>
         </Card>
         <Card>
-          <template #title>
+          <template #subtitle>
             医保个账
           </template>
           <template #content>
@@ -267,7 +274,7 @@ function handleCityChange() {
           </template>
         </Card>
         <Card>
-          <template #title>
+          <template #subtitle>
             公积金个账
           </template>
           <template #content>
@@ -275,7 +282,7 @@ function handleCityChange() {
           </template>
         </Card>
 
-        <Button v-if="isSupported" class="col-span-2 md:col-span-3" :severity="copied ? 'success' : 'secondary'" raised @click="copyUrl">
+        <Button v-if="isSupported" class="col-span-2 sm:col-span-3" :severity="copied ? 'success' : 'secondary'" raised @click="copyUrl">
           {{ copied ? '复制成功' : '复制分享链接' }}
         </Button>
       </div>
