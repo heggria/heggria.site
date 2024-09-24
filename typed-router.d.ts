@@ -30,6 +30,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/package-manager': RouteRecordInfo<'/posts/package-manager', '/posts/package-manager', Record<never, never>, Record<never, never>>,
     '/posts/react-event': RouteRecordInfo<'/posts/react-event', '/posts/react-event', Record<never, never>, Record<never, never>>,
     '/posts/react-fiber': RouteRecordInfo<'/posts/react-fiber', '/posts/react-fiber', Record<never, never>, Record<never, never>>,
+    '/posts/react-hook-form-type': RouteRecordInfo<'/posts/react-hook-form-type', '/posts/react-hook-form-type', Record<never, never>, Record<never, never>>,
     '/posts/tankstank-query': RouteRecordInfo<'/posts/tankstank-query', '/posts/tankstank-query', Record<never, never>, Record<never, never>>,
   }
 }
