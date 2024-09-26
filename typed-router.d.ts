@@ -32,5 +32,6 @@ declare module 'vue-router/auto-routes' {
     '/posts/react-fiber': RouteRecordInfo<'/posts/react-fiber', '/posts/react-fiber', Record<never, never>, Record<never, never>>,
     '/posts/react-hook-form-type': RouteRecordInfo<'/posts/react-hook-form-type', '/posts/react-hook-form-type', Record<never, never>, Record<never, never>>,
     '/posts/tankstank-query': RouteRecordInfo<'/posts/tankstank-query', '/posts/tankstank-query', Record<never, never>, Record<never, never>>,
+    '/posts/web-render-types': RouteRecordInfo<'/posts/web-render-types', '/posts/web-render-types', Record<never, never>, Record<never, never>>,
   }
 }
