@@ -47,14 +47,14 @@ Mac 到手后激活、登录 Apple id，进入桌面，打开 Safari，安装以
 
 1. 打开终端，粘贴下面的文本（替换为你的电子邮件地址，注意区分公司邮箱和个人邮箱），然后一直回车即可，生成本机的私钥
 
-```
+```shell
 ssh-keygen -t ed25519 -C "your_email@example.com"
 
 ```
 
 1. 执行以下命令，将私钥复制到剪贴板
 
-```
+```shell
 pbcopy < ~/.ssh/id_ed25519.pub
 
 ```
@@ -63,7 +63,7 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 # Brew 安装 - Mac 软件包管理器
 
-```
+```shell
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 
 ```
@@ -73,28 +73,28 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 # Warp 安装 - AI 终端
 
-```
+```shell
 brew install --cask warp
 
 ```
 
 # Oh-my-zsh 安装 - zsh 配置
 
-```
+```shell
 sh -c "$(curl -fsSL https://gitee.com/shmhlsy/oh-my-zsh-install.sh/raw/master/install.sh)"
 
 ```
 
 # Nvm 安装 - Node 版本控制
 
-```
+```shell
 brew install nvm
 
 ```
 
 安装后，更改 zsh 配置
 
-```
+```shell
 mkdir ~/.nvm
 vim ~/.zshrc
 
@@ -102,7 +102,7 @@ vim ~/.zshrc
 
 vim 添加以下配置
 
-```
+```shell
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -121,7 +121,7 @@ export NVM_DIR="$HOME/.nvm"
 
 然后执行以下命令刷新 zsh 配置
 
-```
+```shell
 source ~/.zshrc
 
 ```
@@ -130,7 +130,7 @@ source ~/.zshrc
 
 参考以下命令，安装合适你项目的 Node 版本
 
-```
+```shell
 nvm install stable # 安装最新稳定版
 nvm install <version> # 安装指定版
 nvm uninstall <version> # 卸载指定版
@@ -143,7 +143,7 @@ nvm current # 查看当前版本
 
 # 包管理工具安装 - yarn & pnpm
 
-```
+```shell
 npm install -g yarn
 npm install -g pnpm
 
@@ -151,7 +151,7 @@ npm install -g pnpm
 
 # nrm 安装 - npm 源控制
 
-```
+```shell
 npm i -g nrm
 
 nrm add <registry> <url> # 自定义源
