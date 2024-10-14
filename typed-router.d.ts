@@ -28,6 +28,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/a-note': RouteRecordInfo<'/posts/a-note', '/posts/a-note', Record<never, never>, Record<never, never>>,
     '/posts/component-library-analysis': RouteRecordInfo<'/posts/component-library-analysis', '/posts/component-library-analysis', Record<never, never>, Record<never, never>>,
     '/posts/first-post': RouteRecordInfo<'/posts/first-post', '/posts/first-post', Record<never, never>, Record<never, never>>,
+    '/posts/mac-config': RouteRecordInfo<'/posts/mac-config', '/posts/mac-config', Record<never, never>, Record<never, never>>,
     '/posts/package-manager': RouteRecordInfo<'/posts/package-manager', '/posts/package-manager', Record<never, never>, Record<never, never>>,
     '/posts/react-event': RouteRecordInfo<'/posts/react-event', '/posts/react-event', Record<never, never>, Record<never, never>>,
     '/posts/react-fiber': RouteRecordInfo<'/posts/react-fiber', '/posts/react-fiber', Record<never, never>, Record<never, never>>,
