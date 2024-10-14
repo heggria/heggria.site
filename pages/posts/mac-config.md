@@ -92,9 +92,7 @@ brew install nvm
 
 ```
 
-安装后，按照以下帮助更改 zsh 配置
-
-https://ra3i3wa5ijq.feishu.cn/space/api/box/stream/download/asynccode/?code=YzQxMGMyNzhlYjQ0MWFjYjU0YmJjZTY4ZDEyYjcwMzlfcnpYQjN4RjUyUmZMYU1iNFlKaGRLd3hRNDdXWVVsSGtfVG9rZW46V29naGI0OVdybzNZRGp4Q015R2NnemV3bmNiXzE3Mjg3MTMzMzM6MTcyODcxNjkzM19WNA
+安装后，更改 zsh 配置
 
 ```
 mkdir ~/.nvm
