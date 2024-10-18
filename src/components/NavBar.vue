@@ -41,8 +41,11 @@ const { y: scroll } = useWindowScroll()
         <a href="https://twitter.com/heggria" target="_blank" title="Twitter" class="lt-md:hidden">
           <div i-ri-twitter-x-fill />
         </a>
-        <a href="https://github.com/heggria" target="_blank" title="GitHub" class="lt-md:hidden">
+        <a href="https://github.com/heggria" target="_blank" title="GitHub">
           <div i-uil-github-alt />
+        </a>
+        <a href="https://www.travellings.cn/go.html" target="_blank" title="Travelling">
+          <div i-mynaui:train w-1.25em h-1.25em />
         </a>
         <a href="/feed.xml" target="_blank" title="RSS" class="lt-md:hidden">
           <div i-la-rss-square style="font-size:1.25rem; margin: 0 -0.125rem;" />
